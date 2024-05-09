@@ -5,11 +5,11 @@
 <main layout:fragment="content">
     <div class="container py-5">
         <h2 class="d-inline" th:text="${service.name}"></h2>
-        <h4 class="d-inline" th:text="' (with ' + ${barber.name}  + ')'"></h4>
-        <h3 th:text="${dateString} + ' at ' + ${timeString}"></h3>
+        <h4 class="d-inline" th:text="' (у ' + ${barber.name}  + ')'"></h4>
+        <h3 th:text="${dateString} + ' о ' + ${timeString}"></h3>
         <form method="post" th:object="${bookingView}" th:action="@{/book/save}" class="col-lg-6 row g-3 mt-2">
             <div class="col-12">
-                <input type="text" class="form-control" placeholder="Full Name" th:field="*{customerName}">
+                <input type="text" class="form-control" placeholder="ПІБ" th:field="*{customerName}">
                 <div class="d-block" th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}"
                      th:errorclass="invalid-feedback"></div>
             </div>
@@ -19,16 +19,16 @@
                      th:errorclass="invalid-feedback"></div>
             </div>
             <div class="col-12">
-                <input type="text" class="form-control" placeholder="Phone Number" th:field="*{customerPhoneNumber}">
+                <input type="text" class="form-control" placeholder="Номер телефону" th:field="*{customerPhoneNumber}">
                 <div class="d-block" th:if="${#fields.hasErrors('customerPhoneNumber')}" th:errors="*{customerPhoneNumber}"
                      th:errorclass="invalid-feedback"></div>
             </div>
             <div class="col-12">
-                <textarea class="form-control" rows="3" placeholder="Comments (optional)"
+                <textarea class="form-control" rows="3" placeholder="Коментар (не обов'язково)"
                           th:field="*{comments}"></textarea>
             </div>
             <div class="col-12">
-                <button type="submit" class="btn btn-primary me-5">Book it</button>
+                <button type="submit" class="btn btn-primary me-5">Забронювати</button>
                 <a th:href="@{/}">Cancel</a>
             </div>
             <input type="hidden" id="bookingDate" name="bookingDate" th:value="${dateString}">

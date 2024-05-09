@@ -5,7 +5,7 @@
 <main layout:fragment="content">
     <div class="container">
         <div class="d-flex justify-content-around">
-            <h2 class="text-uppercase text-start mb-3">Select Time</h2>
+            <h2 class="text-uppercase text-start mb-3">Оберіть час</h2>
             <h2 class="text-center mb-3 current-date"></h2>
         </div>
         <div class="row g-4">
@@ -16,17 +16,17 @@
                     </div>
                     <div class="card-body showcase-wrapper">
                         <div class="row g-3 time_elements">
-                            <p class="mb-0">Morning</p>
+                            <p class="mb-0">Ранок</p>
                             <div class="col-auto" th:each="time : ${availableTimeList}"
                                  th:if="${time.compareTo('12:00') < 0}">
                                 <button th:text="${time}" class="btn btn-secondary"></button>
                             </div>
-                            <p class="mb-0">Afternoon</p>
+                            <p class="mb-0">Обід</p>
                             <div class="col-auto" th:each="time : ${availableTimeList}"
                                  th:if="${time.compareTo('12:00') >= 0 && time.compareTo('18:00') < 0}">
                                 <button th:text="${time}" class="btn btn-secondary"></button>
                             </div>
-                            <p class="mb-0">Evening</p>
+                            <p class="mb-0">Вечір</p>
                             <div class="col-auto" th:each="time : ${availableTimeList}"
                                  th:if="${time.compareTo('18:00') >= 0}">
                                 <button th:text="${time}" class="btn btn-secondary"></button>

@@ -4,13 +4,14 @@
 
 <main layout:fragment="content">
     <div class="container py-5 my-5">
-        <h1 class="text-capitalize text-center mb-3">Thank You!</h1>
-        <p class="fs-3 text-center">You're booked in for <strong th:text="${service.name}"></strong></p>
-        <p class="fs-3 text-center">on <strong th:text="${dateString}"></strong>
-            <strong th:text="' at ' + ${timeString}"></strong>
+        <h1 class="text-capitalize text-center mb-3">Дякуємо!</h1>
+        <p class="fs-3 text-center">Ви записались на <strong th:text="${service.name}"></strong></p>
+        <p class="fs-3 text-center">Дата: <strong th:text="${dateString}"></strong>
+            <strong th:text="' о ' + ${timeString}"></strong>
         </p>
+        <p class="fs-3 text-center">Нагадування було надіслане на вашу <strong> електронну скриньку</strong></p>
         <p class="text-center">
-            <a th:href="@{/book/service}" class="btn btn-primary btn-lg mt-5 text-center">Book Again</a>
+            <a th:href="@{/book/service}" class="btn btn-primary btn-lg mt-5 text-center">Записатись ще!</a>
         </p>
     </div>
 </main>

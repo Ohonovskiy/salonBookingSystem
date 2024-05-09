@@ -5,7 +5,7 @@
 <main layout:fragment="content">
     <div class="container-xxl py-5">
         <div class="container">
-            <h2 class="text-uppercase text-center mb-5">Select Service</h2>
+            <h2 class="text-uppercase text-center mb-5">Оберіть працівника</h2>
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 <div class="col" th:each="barber : ${barbers}">
                     <a th:href="@{/book/appointment(serviceId=${serviceId}, barberId=${barber.id})}">

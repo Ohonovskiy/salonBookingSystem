@@ -2,20 +2,22 @@ package com.app.salonbooking.controllers;
 
 import com.app.salonbooking.services.BarberService;
 import com.app.salonbooking.services.BookingService;
+import com.app.salonbooking.services.EmailSender;
 import com.app.salonbooking.services.ServiceItemService;
 import com.app.salonbooking.view.BookingView;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
-@RequiredArgsConstructor
 @RequestMapping("/book")
 public class BookingController {
 
@@ -24,6 +26,14 @@ public class BookingController {
     private final ServiceItemService itemService;
 
     private final BarberService barberService;
+
+
+    @Autowired
+    public BookingController(BookingService bookingService, ServiceItemService itemService, BarberService barberService) {
+        this.bookingService = bookingService;
+        this.itemService = itemService;
+        this.barberService = barberService;
+    }
 
     @GetMapping("/service")
     public String selectService(Model model) {
@@ -56,6 +66,11 @@ public class BookingController {
                                      @RequestParam String timeString, Model model) {
         model.addAttribute("service", itemService.getServiceById(serviceId));
         model.addAttribute("barber", barberService.getBarberById(barberId));
+
+        if (dateString == null || dateString.isEmpty()) {
+            dateString = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        }
+
         model.addAttribute("dateString", dateString);
         model.addAttribute("timeString", timeString);
         model.addAttribute("bookingView", new BookingView());
@@ -69,11 +84,16 @@ public class BookingController {
         model.addAttribute("barber", barberService.getBarberById(bookingView.getBarberId()));
         model.addAttribute("dateString", bookingView.getBookingDate());
         model.addAttribute("timeString", bookingView.getStartTime());
+
         if (result.hasErrors()) {
             return "bookings/customer_form";
         }
 
         bookingService.saveBooking(bookingView);
+
+        EmailSender emailSender = new EmailSender(barberService, itemService);
+        emailSender.sendEmail(bookingView);
+
         return "bookings/book_confirm";
     }
 }
