@@ -47,7 +47,7 @@ public class BookingServiceImpl implements BookingService {
         long duration = Long.parseLong(durationTime);
 
         LocalTime tempTime = startTime;
-        while (endTime.compareTo(tempTime) != 0) {
+        while (!endTime.equals(tempTime)) {
             List<Booking> bookingList = bookingRepository
                     .findByBookingDateAndStartTimeAndBarberId(bookingDate, tempTime, barberId);
             if(bookingList.isEmpty()) {
