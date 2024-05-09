@@ -1,10 +1,11 @@
 INSERT INTO `barbers`
 (`email`, `name`, `phone_number`)
 VALUES
-('pucmak@gmail.com', 'Іван', '38066832812'),
-('killer2005@gmail.com', 'Ростік', '38098812354'),
-('dotaismylife@gmail.com', 'володя', '38068821812'),
-('2106best@gmail.com', 'шлявко', '38095711513');
+('pucmak@gmail.com', 'Аврора', '38066832812'),
+('killer2005@gmail.com', 'Галина', '38098812354'),
+('dotaismylife@gmail.com', 'Дарина', '38068821812'),
+('2106best@gmail.com', 'Олена', '38095711513'),
+('210623est@gmail.com', 'Ірина', '38095711513');
 
 INSERT INTO services
 (duration, name, price)
@@ -71,5 +72,15 @@ VALUES
 (4, 7),
 (4, 8),
 (4, 9),
-(4, 10);
+(4, 10),
+(5, 1),
+(5, 2),
+(5, 3),
+(5, 4),
+(5, 5),
+(5, 6),
+(5, 7),
+(5, 8),
+(5, 9),
+(5, 10);
 
